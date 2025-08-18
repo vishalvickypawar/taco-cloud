@@ -16,8 +16,10 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import tacos.Ingredient;
 import tacos.Ingredient.Type;
+import tacos.IngredientUDT;
 import tacos.Taco;
 import tacos.TacoOrder;
+import tacos.TacoUDT;
 import tacos.data.IngredientRepository;
 
 @Slf4j
@@ -62,7 +64,7 @@ public class DesignTacoController {
 		if(errors.hasErrors()) {
 			return "design";
 		}
-		tacoOrder.addTaco(taco);
+		tacoOrder.addTaco(convertTacotoTacoUDT(taco));
 		log.info("Processing taco: {}", taco);
 		return "redirect:/orders/current";
 	}
@@ -74,4 +76,10 @@ public class DesignTacoController {
 				.filter(x->x.getType().equals(type))
 				.collect(Collectors.toList());
 	}
+	
+	private TacoUDT convertTacotoTacoUDT(Taco taco) {
+		List<IngredientUDT> ingredientUDTs = taco.getIngredients();
+		return new TacoUDT(taco.getName(), ingredientUDTs);
+	}
+	
 }

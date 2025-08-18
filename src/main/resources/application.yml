@@ -4,3 +4,12 @@ spring:
   datasource:
     generate-unique-name: false
     name: tacocloud
+  cassandra:
+    keyspace-name: tacocloud
+    schema-action: recreate
+    local-datacenter: datacenter1
+    connection:
+      connect-timeout: PT10S
+      init-query-timeout: PT20S
+    request:
+      timeout: PT20S
