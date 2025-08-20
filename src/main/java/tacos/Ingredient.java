@@ -1,22 +1,22 @@
 package tacos;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import lombok.AccessLevel;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Entity
+@Document
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
+@NoArgsConstructor
 public class Ingredient {
 
 	@Id
-	private final String id;
-	private final String name;
-	private final Type type;
+	private String id;
+	private String name;
+	private Type type;
 	
 	public enum Type {
 		WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE
