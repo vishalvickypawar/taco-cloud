@@ -20,7 +20,7 @@ public class TacoOrder {
 	private List<Taco> tacos = new ArrayList<Taco>();
 
 	public void addTaco(Taco taco) {
-		taco.add(taco);
+		tacos.add(taco);
 	}
 
 }
